@@ -17,7 +17,7 @@ export default function onboarding() {
           <Stopwatch />
         </div>
 
-        <div style={{ position: 'absolute', bottom: '250px', left: '20px', zIndex: 999 }}>
+        <div style={{ position: 'absolute', bottom: '200px', left: '20px', zIndex: 999 }}>
           <WeekForm />
         </div>
         <div style={{ position: 'absolute', bottom: '250px', right: '80px', zIndex: 999 }}>
