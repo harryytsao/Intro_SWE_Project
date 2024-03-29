@@ -22,6 +22,7 @@ const Navbar = () => {
                 <a href="/onboarding" className="border border-slate-300 text-slate-300 px-4 py-2 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none">Login</a>
               </div>
           </div>
+          </div>
         </div>
         </div>
       </nav>
