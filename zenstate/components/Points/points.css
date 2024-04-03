@@ -1,0 +1,16 @@
+.circle-frame {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%; 
+  border: 50px solid rgba(255, 255, 255, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.point {
+  font-size: 200px;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 4px
+}
