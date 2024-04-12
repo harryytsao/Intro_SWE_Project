@@ -8,12 +8,12 @@ const Footer = () => {
           <img
             src="/ZenState.svg" 
             alt="ZenState"
-            className="h-10" 
+            className="h-12" 
           />
         </div>
 
         <div className="flex items-center space-x-4 text-sm">
-          <a href="/about" className="hover:text-gray-300">
+          <a href="/" className="hover:text-gray-300">
             About Us
           </a>
           <a href="/contact" className="hover:text-gray-300">

@@ -5,22 +5,19 @@ import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation'
 import Link from 'next/link'
-import WeekForm from '@/components/weeklypoints/weeklypoints'
-import Leaderboard from '@/components/Leaderboard/Leaderboard'
+import HeroSection from '@/components/HeroSection/HeroSection'
 
 export default function Home() {
   return (
     <div>
       <Navbar />
       <BackgroundGradientAnimation>
-        <div style={{ position: 'absolute', bottom: '250px', left: '20px', zIndex: 999 }}>
-          <WeekForm />
+      <div className="absolute z-50 flex min-h-screen flex-col pointer-events-none">
+        <div className="container mx-auto px-24 py-12">
+          <HeroSection />
         </div>
-        <div style={{ position: 'absolute', bottom: '250px', right: '80px', zIndex: 999 }}>
-          <Leaderboard />
-        </div>
-
-      </BackgroundGradientAnimation>
+      </div>
+    </BackgroundGradientAnimation>
       <Footer />
     </div>
   ) 
