@@ -7,26 +7,32 @@ th, td {
   border: 1px solid  rgba(255, 255, 255, 0.5);
   padding: 8px;
   text-align: left;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 th {
   background-color:  rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .rank {
   width: 20%;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .player {
   width: 50%;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .score {
   width: 30%;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .title {
   text-align: center;
   font-size: 24px; 
   font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
 }
