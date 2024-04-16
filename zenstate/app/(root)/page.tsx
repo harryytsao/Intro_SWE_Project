@@ -6,7 +6,7 @@ import { BackgroundGradientAnimation } from '@/components/ui/background-gradient
 import Link from 'next/link'
 import HeroSection from '@/components/HeroSection/HeroSection'
 
-export default function Home() {
+export default function About() {
   return (
     <div>
       <Navbar />

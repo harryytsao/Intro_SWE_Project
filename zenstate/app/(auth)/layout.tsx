@@ -2,6 +2,8 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { Inter } from "next/font/google"
 import '../globals.css'
 import { dark } from "@clerk/themes"
+import Navbar from "@/components/Navbar"
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"
 
 export const metadata  = {
     title: 'ZenState',

@@ -1,4 +1,4 @@
-"user server"
+"user server";
 import { connectToMongo } from "../mongoose";
 import { User } from "../models";
 import mongoose from "mongoose";
@@ -10,6 +10,9 @@ interface Params{
     _score?: number|null
     _categories: Array<String>
 }
+
+// Fetch User
+
 export const addFriend=async(_fromId: string, _toId: string)=>{
     connectToMongo()
     const fromUser= await getUser(_fromId)

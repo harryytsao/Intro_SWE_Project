@@ -1,31 +1,21 @@
-'use client';
-import React from 'react';
-import NavbarUser from '@/components/NavbarUser'
-import Footer from '@/components/Footer'
-import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation'
-import WeekForm from "@/components/weeklypoints/weeklypoints";
-import Leaderboard from "@/components/Leaderboard/Leaderboard";
-import Stopwatch from "@/components/timer/Stopwatch";
-// Move to root
-export default function Onboarding() {
+import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+
+// import { fetchUser } from "@/lib/actions/user.actions";
+// import AccountProfile from "@/components/forms/AccountProfile";
+
+async function Page() {
+  // const user = await currentUser();
+  // if (!user) return null;
+
+  // const userInfo = await fetchUser(user.id);
+  // if (user?.onboarded) redirect("/home")
   return (
-    <div>
-      <NavbarUser />
-      <BackgroundGradientAnimation>
-        <div style={{ position: 'absolute', top: '8%', left: '5%', zIndex: 999 }}>
-          <Stopwatch />
-        </div>
-
-        <div style={{ position: 'absolute', bottom: '8%', left: '5%', zIndex: 999 }}>
-          <WeekForm />
-        </div>
-
-        <div style={{ position: 'absolute', bottom: '30%', right: '10%', zIndex: 999 }}>
-          <Leaderboard />
-        </div>
-        
-      </BackgroundGradientAnimation>
-      <Footer />
-    </div>
+    <main>
+      <h1 className="head-text">Onboarding</h1>
+      <p className="mt-3 text-base-regular text-light-2">Complete your profile now to use ZenState.</p>
+    </main>
   )
 }
+
+export default Page;
