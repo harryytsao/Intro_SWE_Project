@@ -6,7 +6,7 @@ import { BackgroundGradientAnimation } from '@/components/ui/background-gradient
 import WeekForm from "@/components/weeklypoints/weeklypoints";
 import Leaderboard from "@/components/Leaderboard/Leaderboard";
 import Stopwatch from "@/components/timer/Stopwatch";
-
+// Move to root
 export default function Onboarding() {
   return (
     <div>
