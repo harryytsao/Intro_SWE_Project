@@ -1,9 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs"
 import { Inter } from "next/font/google"
 import '../globals.css'
-import { dark } from "@clerk/themes"
-import Navbar from "@/components/Navbar"
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"
 
 export const metadata  = {
     title: 'ZenState',
@@ -18,13 +15,9 @@ export default function RootLayout ({
     children: React.ReactNode
 }) {
     return (
-    <ClerkProvider
-        appearance={{
-            baseTheme: dark,
-        }}
-    >
+    <ClerkProvider>
         <html lang="en">
-            <body className={`${inter.className} bg-dark-1`}>
+            <body className={`${inter.className} bg-slate-800`}>
                 {children}
             </body>
         </html>
