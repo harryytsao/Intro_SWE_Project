@@ -1,4 +1,3 @@
-import Stopwatch from '@/components/Stopwatch'
 import React from 'react'
 import { UserButton } from "@clerk/nextjs"
 import Footer from '@/components/Footer'
