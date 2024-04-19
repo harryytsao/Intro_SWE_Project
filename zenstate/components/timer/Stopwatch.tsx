@@ -31,7 +31,7 @@ const  Stopwatch = () => {
         await addTime(user.id, points, date.getDay())
       }
 
-      addUserTime(user, pointTrackerValue).catch((err)=>console.log(err))
+      addUserTime(user, userInputTime).catch((err)=>console.log(err))
     }
 
     return () => clearInterval(intervalId);
