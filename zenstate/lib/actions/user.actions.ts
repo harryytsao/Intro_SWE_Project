@@ -42,7 +42,20 @@ export async function fetchUser(userId: string) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
 }
-
+export async function addTime(userId: string, quant: Number, date:Number ){
+  try{
+    const user=await User.findOne({id: userId}).exec()
+    let current=user["score"]
+    current.push({quant, date})
+    console.log(current)
+    const added=await User.findOneAndUpdate(
+      {id: userId},
+      {score: current}
+    ).exec()
+  }catch(err){
+    console.log(err)
+  }
+}
 export async function updateUser({
   userId,
   username,
@@ -77,7 +90,7 @@ export const newUser = (_newId: string, _username: string) => {
         username: _username.toLowerCase(),
         friends: new Array<String>(),
         history: new Array<String>(),
-        score: 0,
+        score: new Array<any>(),
         categories: new Array<String>(),
       },
       { upsert: true }

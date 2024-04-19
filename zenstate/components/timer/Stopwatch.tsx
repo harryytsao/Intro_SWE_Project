@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './Stopwatch.css';
 import PointTracker from '../Points/points';
+import { useUser } from '@clerk/nextjs';
+import {addTime} from "@/lib/actions/user.actions"
 
-const Stopwatch = () => {
+const  Stopwatch = () => {
   const [time, setTime] = useState(0);
   const [started, setStarted] = useState(false);
   const [userInputTime, setUserInputTime] = useState(0);
   const [pointTrackerValue, setPointTrackerValue] = useState(0); 
+  const {isSignedIn, user, isLoaded}= useUser()
+
+  
 
   useEffect(() => {
     let intervalId: string | number | NodeJS.Timeout | undefined;
@@ -18,6 +23,15 @@ const Stopwatch = () => {
       console.log("ENDED");
       console.log("Adding points for time:", userInputTime);
       setPointTrackerValue(prevValue => prevValue + userInputTime); 
+
+      const addUserTime = async(user: any, points: Number)=>{
+        console.log("called")
+        if(!user) return null
+        const date=new Date()
+        await addTime(user.id, points, date.getDay())
+      }
+
+      addUserTime(user, pointTrackerValue).catch((err)=>console.log(err))
     }
 
     return () => clearInterval(intervalId);
