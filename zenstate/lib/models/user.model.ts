@@ -4,7 +4,10 @@ const userSchema = new mongoose.Schema({
     id: { type: String, required: true },
     username: { type: String, required: true, unique: true},
     name: { type: String, required: true },
-    score: { type: Number, default: 0 },
+    score:[{
+        quant: {type: Number}, 
+        date: {type: Number}
+    }], 
     onboarded : {
         type: Boolean,
         default: false,
