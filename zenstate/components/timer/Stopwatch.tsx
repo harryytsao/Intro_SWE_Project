@@ -61,7 +61,7 @@ const  Stopwatch = () => {
             Enter time in minutes:
             <input name="minutes" type="number" min="1" step="1" className="stopwatch-input" />
           </label>
-          <button type='submit' className="stopwatch-button">Start</button>
+          <button type='submit' className="stopwatch-button hover:bg-slate-400 hover:text-slate-700 transition-all">Start</button>
         </form>
       </div>
       <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
