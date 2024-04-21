@@ -10,29 +10,21 @@ interface Params {
   path: string;
 }
 
+export async function searchUserByUsername(_username: string){
+  let returnVals={
+    id: "", 
+    name: "",
+    username: ""
+  }
+  const user=await User.findOne({username: _username}).exec()
+  if(!user) return null
+  returnVals.id=user.id
+  returnVals.name=user.name
+  returnVals.username=user.username
+  return  returnVals
+}
+
 // Fetch User
-
-// export const addFriend = async (_fromId: string, _toId: string) => {
-//   connectToDB();
-//   const fromUser = await getUser(_fromId);
-//   const toUser = await getUser(_toId);
-//   if (!fromUser) return null;
-//   if (!toUser) return null;
-//   const oldFriends = fromUser.friends;
-//   oldFriends.push(toUser._id);
-//   await updateUser({
-//     _uid: _fromId,
-//     _friends: oldFriends,
-//     _username: fromUser.username,
-//     _history: fromUser.history,
-//     _score: fromUser.score,
-//     _categories: fromUser.categories,
-//   });
-// };
-// export const getUser = (_uid: string) => {
-//   return User.findById(_uid);
-// };
-
 export async function fetchUser(userId: string) {
   try {
     connectToDB();
@@ -56,6 +48,23 @@ export async function addTime(userId: string, quant: Number, date:Number ){
     console.log(err)
   }
 }
+
+export async function addFriend(fromId: string, toId:String){
+  try{
+    const user=await User.findOne({id: fromId})
+    const friend=await User.findOne({id: toId})
+    const friend_Id=friend._id
+    if(user.friends.includes(friend_Id)){
+      return 
+    }
+    await User.findOneAndUpdate({id:fromId},
+      {$push: {friends: friend_Id}}
+    )
+  }catch(err){
+    console.log(err)
+  }
+}
+
 export async function updateUser({
   userId,
   username,

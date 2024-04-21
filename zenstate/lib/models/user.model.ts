@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, {Schema} from 'mongoose';
 
 const userSchema = new mongoose.Schema({
     id: { type: String, required: true },
@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema({
         quant: {type: Number}, 
         date: {type: Number}
     }], 
+    friends:[
+        {type: Schema.Types.ObjectId}
+    ],
     onboarded : {
         type: Boolean,
         default: false,
