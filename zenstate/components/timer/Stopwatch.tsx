@@ -25,22 +25,22 @@ const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
       console.log("Adding points for time:", userInputTime);
       setPointTrackerValue(prevValue => prevValue + userInputTime); 
 
-      const addUserTime = async (user: any, points: number) => {
-        console.log("called");
-        if (!user) return null;
-        const date = new Date();
-        await addTime(user.id, points, date.getDay());
-      };
+      const addUserTime = async(user: any, points: Number)=>{
+        console.log("called")
+        if(!user) return null
+        const date=new Date()
+        await addTime(user.id, points, date.getDay())
+      }
 
-      addUserTime(user, userInputTime).catch((err) => console.log(err));
+      addUserTime(user, userInputTime).catch((err)=>console.log(err))
     }
 
     return () => clearInterval(intervalId);
   }, [time, started, userInputTime, user, setPointTrackerValue]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const formElements = e.target as HTMLFormElement & {
+    const formElements = e.target as typeof e.target & {
       minutes: { value: string };
     };
     const inputTime = parseInt(formElements.minutes.value);
@@ -62,7 +62,7 @@ const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
             Enter time in minutes:
             <input name="minutes" type="number" min="1" step="1" className="stopwatch-input" />
           </label>
-          <button type='submit' className="stopwatch-button">Start</button>
+          <button type='submit' className="stopwatch-button hover:bg-slate-400 hover:text-slate-700 transition-all">Start</button>
         </form>
       </div>
     </div>
