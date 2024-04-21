@@ -14,7 +14,7 @@ export default function Page() {
       <NavbarUser />
       <BackgroundGradientAnimation>
         <div style={{ position: 'absolute', top: '8%', left: '5%', zIndex: 999 }}>
-          <Stopwatch />
+          <Stopwatch setPointTrackerValue={setPointTrackerValue} />
         </div>
 
         <div style={{ position: 'absolute', bottom: '8%', left: '5%', zIndex: 999 }}>
@@ -27,6 +27,10 @@ export default function Page() {
 
         <div style={{ position: 'absolute', top: '10%', right: '10%', zIndex: 999 }}>
           <SearchFriends />
+        </div>
+
+        <div style={{ position: 'absolute', bottom: '25%', right: '35%', zIndex: 999 }}> 
+          <PointTracker time={pointTrackerValue} />
         </div>
         
       </BackgroundGradientAnimation>
