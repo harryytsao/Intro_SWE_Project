@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { searchUserByUsername, addFriend } from '@/lib/actions/user.actions'
 import { useUser } from '@clerk/nextjs'
  const SearchFriends=()=>{
-    const [inputVal, setInputVal]=useState('Username')
+    const [inputVal, setInputVal]=useState('')
     const [found, setFound]=useState(false)
     const [friend, setFriend]=useState({
         id:"",
@@ -47,6 +47,7 @@ import { useUser } from '@clerk/nextjs'
                     value={inputVal}
                     onChange={(e)=>setInputVal(e.target.value)}
                     className="search-input"
+                    placeholder="Username"
                 />
                 <button onClick={handleSubmit} className="search-button hover:bg-slate-400 hover:text-slate-700 transition-all">Search</button>
             </form>
@@ -68,6 +69,7 @@ import { useUser } from '@clerk/nextjs'
                     value={inputVal}
                     onChange={(e)=>setInputVal(e.target.value)}
                     className="search-input"
+                    placeholder="Username"
                 />
                 <button onClick={handleSubmit} className="search-button">Search</button>
             </form>
