@@ -17,6 +17,7 @@ import { useUser } from '@clerk/nextjs'
         const addNewFriend=async(currentUser:any)=>{
             await addFriend(currentUser.id, friend.id)
         }
+        addNewFriend(user)
     }
 
     const handleSubmit=(event:any)=>{

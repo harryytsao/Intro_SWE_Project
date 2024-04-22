@@ -51,9 +51,11 @@ export async function addTime(userId: string, quant: Number, date:Number ){
 
 export async function addFriend(fromId: string, toId:String){
   try{
+    console.log(fromId)
     const user=await User.findOne({id: fromId})
     const friend=await User.findOne({id: toId})
     const friend_Id=friend._id
+    if(!user)return
     if(user.friends.includes(friend_Id)){
       return 
     }
