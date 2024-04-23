@@ -10,7 +10,9 @@ import PointTracker from '@/components/Points/points';
 import SearchFriends from '@/components/SearchFriends/SearchFriends';
 
 export default function Page() {
+
   const [pointTrackerValue, setPointTrackerValue] = useState(0); 
+
 
   return (
     <div>

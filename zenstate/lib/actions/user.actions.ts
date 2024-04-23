@@ -23,6 +23,38 @@ export async function searchUserByUsername(_username: string){
   returnVals.username=user.username
   return  returnVals
 }
+export async function getFriends(uid: string){
+  connectToDB()
+  let returnFriends:any[]=[]
+  const user=await User.findOne({id: uid}).exec()
+  if(!user){
+    return null
+  }
+  for(let i=0;i<user.friends.length;i++){
+    let score=0
+    let currentFriend=await User.findById(user.friends[i]).exec()
+    for(let j=0;j<currentFriend.score.length;j++){
+      score+=currentFriend.score[j].quant
+    }
+    returnFriends.push({
+      userName:currentFriend.username,
+      score:score,
+    })
+  }
+  return returnFriends
+}
+
+export async function getWeeklyPoints(uid: string){
+  connectToDB()
+  const user=await User.findOne({id: uid}).exec()
+  if(!user) return null
+  const userScore=user.score
+  let points=[0,0,0,0,0,0,0]
+  for(let i=0;i<userScore.length;i++){
+    points[userScore[i].date]+=userScore[i].quant
+  }
+  return points
+}
 
 // Fetch User
 export async function fetchUser(userId: string) {
