@@ -20,12 +20,27 @@ import { useUser } from '@clerk/nextjs'
         addNewFriend(user)
     }
 
+
     const handleSubmit=(event:any)=>{
         event.preventDefault()
         const searchUsers=async(uname:string)=>{
             const user=await searchUserByUsername(uname)
             return user
         }
+
+        // const getFriendsList=async(uid: string)=>{
+        //     let entries:any=[]
+        //     try{
+        //         entries=await getWeeklyPoints(uid)
+        //     }catch(err){
+        //         console.log(err)
+        //     }
+        //     return entries
+        // }
+        // getFriendsList(user.id).then((val: any)=>{
+        //     console.log(val)
+        // })
+
         searchUsers(inputVal).then((val:any)=>{
             if(val){
                 setFound(true)

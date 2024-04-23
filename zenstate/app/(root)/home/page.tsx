@@ -9,6 +9,7 @@ import Stopwatch from "@/components/timer/Stopwatch";
 import SearchFriends from '@/components/SearchFriends/SearchFriends';
 // Move to root
 export default function Page() {
+
   return (
     <div>
       <NavbarUser />
