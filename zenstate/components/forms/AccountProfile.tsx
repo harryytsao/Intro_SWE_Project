@@ -1,5 +1,4 @@
 "use client";
-
 import { useForm } from 'react-hook-form';
 import {
     Form,
@@ -54,7 +53,7 @@ const AccountProfile = ({ user, btnTitle }:
         }
     }
 
-
+    // Account Profile during onboarding asks users for name and username
     return (
         <Form {...form}>
             <form

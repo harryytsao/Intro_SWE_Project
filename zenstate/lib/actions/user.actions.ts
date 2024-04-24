@@ -9,6 +9,7 @@ interface Params {
   name: string;
   path: string;
 }
+// Next.js Server Actions
 
 export async function searchUserByUsername(_username: string){
   let returnVals={

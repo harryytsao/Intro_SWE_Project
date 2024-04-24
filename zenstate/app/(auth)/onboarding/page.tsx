@@ -3,13 +3,11 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-// import { fetchUser } from "@/lib/actions/user.actions";
-// import AccountProfile from "@/components/forms/AccountProfile";
-
 async function Page() {
   const user = await currentUser();
   if (!user) return null;
 
+  // Fetch user information, if already onboarded redirect to home page
   const userInfo = await fetchUser(user.id);
   if (userInfo?.onboarded) redirect("/home")
   const userData = {

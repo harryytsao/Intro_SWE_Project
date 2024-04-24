@@ -15,6 +15,7 @@ export default function RootLayout ({
     children: React.ReactNode
 }) {
     return (
+    // Wrap in clerk to enable user authentication
     <ClerkProvider>
         <html lang="en">
             <body className={`${inter.className} bg-slate-800`}>

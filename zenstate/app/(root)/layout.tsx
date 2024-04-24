@@ -6,7 +6,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ZenState"
+  title: 'ZenState',
+  description: 'A productivity and social accountability application'
 };
 
 export default function RootLayout({
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={'${inter.className} bg-slate-800 text-slate-100'}>
+        <body className={`${inter.className} bg-slate-800 text-slate-100`}>
           {children}
         </body>
       </html>
