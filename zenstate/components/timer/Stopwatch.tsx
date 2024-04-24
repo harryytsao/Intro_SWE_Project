@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Stopwatch.css';
-import PointTracker from '../Points/points';
+import { useUser } from '@clerk/nextjs';
+import { addTime } from "@/lib/actions/user.actions";
 
-const Stopwatch = () => {
-  const [time, setTime] = useState(0);
-  const [started, setStarted] = useState(false);
-  const [userInputTime, setUserInputTime] = useState(0);
-  const [pointTrackerValue, setPointTrackerValue] = useState(0); 
+interface StopwatchProps {
+  setPointTrackerValue: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
+  const [time, setTime] = useState<number>(0);
+  const [started, setStarted] = useState<boolean>(false);
+  const [userInputTime, setUserInputTime] = useState<number>(0);
+  const {isSignedIn, user, isLoaded}= useUser()
 
   useEffect(() => {
     let intervalId: string | number | NodeJS.Timeout | undefined;
+
     if (started && time > 0) {
       intervalId = setInterval(() => {
         setTime(prevTime => prevTime - 1);
@@ -18,10 +24,19 @@ const Stopwatch = () => {
       console.log("ENDED");
       console.log("Adding points for time:", userInputTime);
       setPointTrackerValue(prevValue => prevValue + userInputTime); 
+
+      const addUserTime = async(user: any, points: Number)=>{
+        console.log("called")
+        if(!user) return null
+        const date=new Date()
+        await addTime(user.id, points, date.getDay())
+      }
+
+      addUserTime(user, userInputTime).catch((err)=>console.log(err))
     }
 
     return () => clearInterval(intervalId);
-  }, [time, started, userInputTime]);
+  }, [time, started, userInputTime, user, setPointTrackerValue]);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -47,11 +62,8 @@ const Stopwatch = () => {
             Enter time in minutes:
             <input name="minutes" type="number" min="1" step="1" className="stopwatch-input" />
           </label>
-          <button type='submit' className="stopwatch-button">Start</button>
+          <button type='submit' className="stopwatch-button hover:bg-slate-400 hover:text-slate-700 transition-all">Start</button>
         </form>
-      </div>
-      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-        <PointTracker time={pointTrackerValue} />
       </div>
     </div>
   );
