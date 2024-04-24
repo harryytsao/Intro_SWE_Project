@@ -1,16 +1,37 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import './Leaderboard.css'; 
-
+import { useUser } from '@clerk/nextjs';
+import { getFriends } from '@/lib/actions/user.actions';
 const Leaderboard = () => {
-  const players = [
-    // samples
-    { rank: 1, name: "Player 1", score: 100 },
-    { rank: 2, name: "Player 2", score: 90 },
-    { rank: 3, name: "Player 3", score: 80 },
-    { rank: 4, name: "Player 4", score: 70 },
-    { rank: 5, name: "Player 5", score: 60 }
-  ];
 
+  const [players, setPlayers]=useState<any[]>([]) 
+  const {isSignedIn, user, isLoaded}=useUser()
+  useEffect(()=>{
+    const getPlayers=async(uid: string)=>{
+      let entries: any=[]
+      try{
+        entries=await getFriends(uid)
+      }catch(err){
+        console.log(err)
+      }
+      return entries
+    }
+    if(user){
+      getPlayers(user.id).then(vals=>{
+        vals.sort((a: any, b: any)=>{
+          if(a.score<b.score){
+            return 1
+          }
+          if(b.score<a.score){
+            return -1
+          }else{
+            return 0
+          }})
+        setPlayers(vals)
+      })
+    }
+  }, [user])
   return (
     <div>
       <h1 className="title">Leaderboard</h1>
@@ -23,10 +44,10 @@ const Leaderboard = () => {
           </tr>
         </thead>
         <tbody>
-          {players.map(player => (
-            <tr key={player.rank}>
-              <td>{player.rank}</td>
-              <td>{player.name}</td>
+          {players.map((player, i) => (
+            <tr key={i+1}>
+              <td>{i+1}</td>
+              <td>{player.userName}</td>
               <td>{player.score}</td>
             </tr>
           ))}
