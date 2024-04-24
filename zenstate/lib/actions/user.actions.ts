@@ -33,6 +33,9 @@ export async function getFriends(uid: string){
   for(let i=0;i<user.friends.length;i++){
     let score=0
     let currentFriend=await User.findById(user.friends[i]).exec()
+    if(!currentFriend){
+      continue
+    }
     for(let j=0;j<currentFriend.score.length;j++){
       score+=currentFriend.score[j].quant
     }
