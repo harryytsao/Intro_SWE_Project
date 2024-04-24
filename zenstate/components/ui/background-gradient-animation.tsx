@@ -2,6 +2,7 @@
 import { cn } from "@/util/cn";
 import { useEffect, useRef, useState } from "react";
 
+// Responsive Background Animation from Aceturnity UI
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
