@@ -13,6 +13,7 @@ const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
   const [userInputTime, setUserInputTime] = useState<number>(0);
   const {isSignedIn, user, isLoaded}= useUser()
 
+  // Effect hook to handle timer logic
   useEffect(() => {
     let intervalId: string | number | NodeJS.Timeout | undefined;
 
@@ -23,6 +24,7 @@ const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
     } else if (time === 0 && started) {
       console.log("ENDED");
       console.log("Adding points for time:", userInputTime);
+       // Update the point tracker value with user input time
       setPointTrackerValue(prevValue => prevValue + userInputTime); 
 
       const addUserTime = async(user: any, points: Number)=>{
@@ -31,13 +33,14 @@ const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
         const date=new Date()
         await addTime(user.id, points, date.getDay())
       }
-
+      //handle errors
       addUserTime(user, userInputTime).catch((err)=>console.log(err))
     }
 
     return () => clearInterval(intervalId);
   }, [time, started, userInputTime, user, setPointTrackerValue]);
 
+  //handle form submission and start the timer
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const formElements = e.target as typeof e.target & {
@@ -54,6 +57,7 @@ const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
       <h2 className="stopwatch-header">Timer</h2>
       <div className="stopwatch-frame">
         <div className="stopwatch-time">
+           {/* Display minutes and seconds */}
           {Math.floor(time / 60) === 0 ? "00" : Math.floor(time / 60).toString().padStart(2, '0')}:
           {time % 60 === 0 ? "00" : (time % 60).toString().padStart(2, '0')}
         </div>
@@ -62,6 +66,7 @@ const Stopwatch: React.FC<StopwatchProps> = ({ setPointTrackerValue }) => {
             Enter time in minutes:
             <input name="minutes" type="number" min="1" step="1" className="stopwatch-input" />
           </label>
+           {/* Button to start the timer */}
           <button type='submit' className="stopwatch-button hover:bg-slate-400 hover:text-slate-700 transition-all">Start</button>
         </form>
       </div>

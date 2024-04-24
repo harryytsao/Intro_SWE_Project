@@ -9,7 +9,7 @@ const PointTracker: React.FC<PointTrackerProps> = ({ time }) => {
   return (
     <div className="circle-frame">
       <div className="point">
-        {time}
+        {time} {/* Display the value of the 'time' prop */}
       </div>
     </div>
   );
