@@ -42,10 +42,9 @@ import { useUser } from '@clerk/nextjs'
         // })
 
         searchUsers(inputVal).then((val:any)=>{
-            if(val){
+            if(val && user.id!=val.id){
                 setFound(true)
                 setFriend(val)
-                console.log(val)
             }else{
                 setFound(false)
             }

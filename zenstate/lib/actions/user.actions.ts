@@ -41,6 +41,14 @@ export async function getFriends(uid: string){
       score:score,
     })
   }
+  let myScore=0
+  for(let u=0;u<user.score.length;u++){
+    myScore+=user.score[u].quant
+  }
+  returnFriends.push({
+    userName: user.username,
+    score: myScore
+  })
   return returnFriends
 }
 
