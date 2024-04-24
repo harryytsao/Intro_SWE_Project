@@ -12,7 +12,7 @@ import SearchFriends from '@/components/SearchFriends/SearchFriends';
 export default function Page() {
 
   const [pointTrackerValue, setPointTrackerValue] = useState(0); 
-
+  const [addedFriend, setAddedFriend]= useState(0)
 
   return (
     <div>
@@ -27,7 +27,7 @@ export default function Page() {
         </div>
 
         <div style={{ position: 'absolute', bottom: '30%', right: '10%', zIndex: 999 }}>
-          <Leaderboard />
+          <Leaderboard addedPoint={pointTrackerValue} addedFriend={addedFriend} />
         </div>
 
         <div style={{ position: 'absolute', bottom: '25%', right: '35%', zIndex: 999 }}> 
@@ -35,7 +35,7 @@ export default function Page() {
         </div>
 
         <div style={{ position: 'absolute', top: '10%', right: '10%', zIndex: 999 }}>
-          <SearchFriends />
+          <SearchFriends  cb={setAddedFriend} curr={addedFriend}/>
         </div>
         
       </BackgroundGradientAnimation>

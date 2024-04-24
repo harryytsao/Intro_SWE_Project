@@ -2,7 +2,11 @@ import './SearchFriends.css'
 import { useState } from 'react'
 import { searchUserByUsername, addFriend } from '@/lib/actions/user.actions'
 import { useUser } from '@clerk/nextjs'
- const SearchFriends=()=>{
+type props={
+    cb: Function,
+    curr: number
+}
+ const SearchFriends=({cb, curr}:props)=>{
     const [inputVal, setInputVal]=useState('')
     const [found, setFound]=useState(false)
     const [friend, setFriend]=useState({
@@ -17,6 +21,7 @@ import { useUser } from '@clerk/nextjs'
         const addNewFriend=async(currentUser:any)=>{
             await addFriend(currentUser.id, friend.id)
         }
+        cb(curr+=1)
         addNewFriend(user)
     }
 

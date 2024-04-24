@@ -3,7 +3,11 @@ import { useState, useEffect } from 'react';
 import './Leaderboard.css'; 
 import { useUser } from '@clerk/nextjs';
 import { getFriends } from '@/lib/actions/user.actions';
-const Leaderboard = () => {
+type props={
+  addedPoint: number,
+  addedFriend: number,
+}
+const Leaderboard = ({addedPoint, addedFriend}:props) => {
 
   const [players, setPlayers]=useState<any[]>([]) 
   const {isSignedIn, user, isLoaded}=useUser()
@@ -31,7 +35,7 @@ const Leaderboard = () => {
         setPlayers(vals)
       })
     }
-  }, [user])
+  }, [user, addedPoint, addedFriend])
   return (
     <div>
       <h1 className="title">Leaderboard</h1>
