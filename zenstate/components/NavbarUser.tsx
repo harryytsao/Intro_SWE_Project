@@ -10,6 +10,7 @@ const NavbarUser = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
+                {/* ZenState Logo */}
                 <a href="/"><img
                   src="/ZenState.svg"
                   alt="ZenState"
@@ -21,6 +22,7 @@ const NavbarUser = () => {
             <div className="hidden md:block">
               <div className="ml-4 flex items-center space-x-4">
                 <a href="/onboarding" className="=">
+                  {/* User Icon */}
                   <UserButton afterSignOutUrl="/"/>
                 </a>
               </div>
