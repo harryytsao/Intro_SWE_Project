@@ -1,8 +1,39 @@
 import React from 'react';
 import './WeekForm.css';
-
-const WeekForm: React.FC = () => {
+import { useEffect, useState } from 'react';
+import { useUser } from '@clerk/nextjs';
+import { getWeeklyPoints } from '@/lib/actions/user.actions';
+type props={
+  points: number
+}
+const WeekForm: React.FC<props> = (props) => {
   const inputBackgroundColor = 'rgba(255, 255, 255, 0.5)'; 
+  const [points, setPoints]=useState([])
+  const {isSignedIn, user, isLoaded}=useUser()
+
+
+  useEffect(()=>{
+  const getPoints=async(uid: string)=>{
+    let entries:any=[]
+    try{
+      entries= await getWeeklyPoints(uid)
+    }catch(err){
+      console.log(err)
+    }
+    return entries
+  }
+  if(user){
+    getPoints(user.id).then((vals: any)=>{
+      setPoints(vals)
+    })
+  }
+  },[user, props.points])
+    // if(user){
+    //   getPoints(user.id).then((val: any)=>{
+    //     setPoints(val)
+    //   })
+    // }
+
 
   return (
     <div className="week-form">
@@ -20,7 +51,7 @@ const WeekForm: React.FC = () => {
           </div>
           {/* Second Row: Points */}
           <div className="points">
-            {[0, 0, 0, 0, 0, 0, 0].map((point, index) => (
+            {points.map((point, index) => (
               <div key={index} className="cell">
                 <input
                   type="number"

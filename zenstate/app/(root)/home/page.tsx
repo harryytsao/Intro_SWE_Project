@@ -23,7 +23,7 @@ export default function Page() {
         </div>
 
         <div style={{ position: 'absolute', bottom: '8%', left: '5%', zIndex: 999 }}>
-          <WeekForm />
+          <WeekForm points={pointTrackerValue} />
         </div>
 
         <div style={{ position: 'absolute', bottom: '30%', right: '10%', zIndex: 999 }}>
